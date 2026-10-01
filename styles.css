@@ -209,7 +209,27 @@ img {
     height: 18px;
 }
 
+
 /* --- HERO --- */
+
+.hero-logo{
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    margin-bottom: 24px;
+    animation: fade-out 3s ease-in-out;
+    animation-timeline: --hero-scroll;
+    animation-range: exit 0% exit 100%;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 
 .hero {
     display: flex;
@@ -223,6 +243,7 @@ img {
     grid-template-columns: 1fr 360px;
     gap: 80px;
     align-items: center;
+    view-timeline-name: --hero-scroll;
 }
 
 .hero-content {
