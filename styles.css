@@ -212,30 +212,40 @@ img {
 
 /* --- HERO --- */
 
-.hero-logo{
-    display: block;
-    margin: 0 auto;
-    height: auto;
-    margin-bottom: 24px;
-    animation: fade-out 3s ease-in-out;
-    animation-timeline: --hero-scroll;
-    animation-range: exit 0% exit 100%;
+/* Snaps to the splash */
+html {
+    scroll-snap-type: y proximity;
+    scroll-padding-top: var(--nav-h);
 }
 
-@keyframes fade-out {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+.hero-splash,
+.hero-main {
+    scroll-snap-align: start;
 }
 
-.hero {
+/* Screen 1: logo only, exactly one screen tall (minus the navbar) */
+.hero-splash {
     display: flex;
     align-items: center;
-    padding: 80px 0;
+    justify-content: center;
+    height: calc(100svh - var(--nav-h));
+
+    /* Tracks how far this block has scrolled out of view */
+    view-timeline-name: --splash;
+    view-timeline-axis: block;
+}
+
+.hero-logo {
+    width: min(70vw, 560px);
+    height: auto;
+}
+
+/* Screen 2: the original hero */
+.hero-main {
+    display: flex;
+    align-items: center;
     min-height: calc(100svh - var(--nav-h));
+    padding: 80px 0;
 }
 
 .hero-layout {
@@ -243,7 +253,42 @@ img {
     grid-template-columns: 1fr 360px;
     gap: 80px;
     align-items: center;
-    view-timeline-name: --hero-scroll;
+}
+
+/* Scroll animation (browsers without support just show everything normally) */
+@supports (animation-timeline: view()) {
+
+    /* Logo drifts up faster than the page and fades out in the first ~40% of scroll */
+    .hero-logo {
+        animation: logo-exit linear both;
+        animation-timeline: --splash;
+        animation-range: exit 0% exit 40%;
+    }
+
+    /* Profile rises into place as it enters the screen */
+    .hero-layout {
+        animation: hero-enter linear both;
+        animation-timeline: view();
+        animation-range: entry 10% entry 70%;
+    }
+}
+
+@keyframes logo-exit {
+    to {
+        opacity: 0;
+        transform: translateY(-22vh) scale(0.92);
+    }
+}
+
+@keyframes hero-enter {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .hero-content {
@@ -948,7 +993,7 @@ img {
 
 @media (max-width: 860px) {
 
-    .hero {
+    .hero-main {
         min-height: auto;
         padding: 80px 0;
     }
@@ -1020,7 +1065,7 @@ img {
         font-size: 13px;
     }
 
-    .hero {
+    .hero-main {
         padding: 64px 0;
     }
 
@@ -1081,6 +1126,7 @@ img {
 
     html {
         scroll-behavior: auto;
+        scroll-snap-type: none;
     }
 
     *,
@@ -1109,5 +1155,10 @@ img {
     .profile-card:hover .profile-back,
     .profile-card:focus-within .profile-back {
         opacity: 1;
+    }
+
+    .hero-logo,
+    .hero-layout {
+        animation: none;
     }
 }
