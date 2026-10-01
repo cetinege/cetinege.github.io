@@ -212,17 +212,6 @@ img {
 
 /* --- HERO --- */
 
-/* Snaps to the splash */
-html {
-    scroll-snap-type: y proximity;
-    scroll-padding-top: var(--nav-h);
-}
-
-.hero-splash,
-.hero-main {
-    scroll-snap-align: start;
-}
-
 /* Screen 1: logo only, exactly one screen tall (minus the navbar) */
 .hero-splash {
     display: flex;
@@ -1126,7 +1115,6 @@ html {
 
     html {
         scroll-behavior: auto;
-        scroll-snap-type: none;
     }
 
     *,
