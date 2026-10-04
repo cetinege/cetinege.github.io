@@ -72,6 +72,73 @@
     color: var(--fg);
 }
 
+/*
+    LIGHT MODE (set by theme.js via <html data-theme="light">)
+    Reverses everything: the page chrome flips, and the two section
+    palettes swap, so .bg-black sections turn light and .bg-white
+    sections turn dark.
+*/
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --ink: #f4f4f1;
+    --text: #101014;
+
+    --bg: #f4f4f1;
+    --fg: #101014;
+    --fg-muted: #5f5f66;
+    --card-bg: #ffffff;
+    --card-bg-2: #ebebe6;
+    --border: #dcdcd6;
+    --border-strong: #bdbdb5;
+}
+
+:root[data-theme="light"] .bg-black {
+    --bg: #f4f4f1;
+    --fg: #101014;
+    --fg-muted: #5f5f66;
+    --card-bg: #ffffff;
+    --card-bg-2: #ebebe6;
+    --border: #dcdcd6;
+    --border-strong: #bdbdb5;
+}
+
+:root[data-theme="light"] .bg-white {
+    --bg: #08080a;
+    --fg: #f5f5f5;
+    --fg-muted: #9999a1;
+    --card-bg: #101014;
+    --card-bg-2: #17171d;
+    --border: #29292f;
+    --border-strong: #3a3a42;
+}
+
+/*
+    Added by theme.js for ~0.5s while the theme changes, then removed,
+    so normal hover effects stay snappy the rest of the time.
+*/
+:root.theme-transition,
+:root.theme-transition *,
+:root.theme-transition *::before,
+:root.theme-transition *::after {
+    transition:
+        background-color 0.45s ease,
+        color 0.45s ease,
+        border-color 0.45s ease,
+        fill 0.45s ease,
+        stroke 0.45s ease,
+        filter 0.45s ease !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
+
 
 /* --- BASE --- */
 
@@ -150,7 +217,7 @@ img {
     z-index: 100;
     height: var(--nav-h);
 
-    border-bottom: 1px solid #29292f;
+    border-bottom: 1px solid var(--border);
     background: var(--ink);
 }
 
@@ -193,7 +260,7 @@ img {
     display: flex;
     align-items: center;
 
-    color: #9999a1;
+    color: var(--fg-muted);
     font-size: 14px;
 
     transition: color 0.2s ease;
@@ -209,8 +276,56 @@ img {
     height: 18px;
 }
 
+/* Logo animation when scrolling */
+.nav-inner {
+    position: relative; /* anchor for the centred logo */
+}
+
+.nav-logo {
+    position: absolute;
+    inset: 0;
+    margin: auto;           /* centres without a transform */
+    width: fit-content;
+    height: 40px;           /* use an even number */
+
+    display: flex;
+    align-items: center;
+    opacity: 0;
+}
+
+.nav-logo img {
+    height: 100%;
+    width: auto;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--fg-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Show the icon for the mode you'd switch TO */
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 /* --- HERO --- */
+
 
 /* Screen 1: logo only, exactly one screen tall (minus the navbar) */
 .hero-splash {
@@ -218,10 +333,111 @@ img {
     align-items: center;
     justify-content: center;
     height: calc(100svh - var(--nav-h));
-
+    position: relative; 
     /* Tracks how far this block has scrolled out of view */
     view-timeline-name: --splash;
     view-timeline-axis: block;
+}
+
+/* Three columns: links | logo + hint | links */
+.splash-stage {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.splash-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+.splash-side {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.splash-left  { justify-self: end;   align-items: flex-start; }
+.splash-right { justify-self: start; align-items: flex-start; }
+
+.splash-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 2px;
+
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 20px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    animation: float 5s ease-in-out infinite;
+    transition: color 0.2s ease;
+}    
+
+/* The dot */
+.splash-link::before {
+    content: "";
+    flex: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.splash-link:hover {
+    color: var(--accent);
+}
+
+/* Keep the gentle bob, but out of sync so they don't move as a block */
+.splash-link:nth-child(even) {
+    animation-delay: -2.5s;
+}
+
+.splash-left  .splash-link:nth-child(odd)  { --x: -28px; }
+.splash-left  .splash-link:nth-child(even) { --x: 12px; animation-delay: -2s; }
+.splash-right .splash-link:nth-child(odd)  { --x: 28px;  animation-delay: -1s; }
+.splash-right .splash-link:nth-child(even) { --x: -12px; animation-delay: -3.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-7px); }
+}
+
+/* "Scroll for more" under the logo */
+.scroll-hint {
+    position:absolute;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    transition: color 0.2s ease;
+}
+
+.scroll-hint:hover {
+    color: var(--accent);
+}
+
+.scroll-arrow {
+    font-size: 16px;
+    animation: nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes nudge {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(5px); }
 }
 
 .hero-logo {
@@ -231,6 +447,7 @@ img {
 
 /* Screen 2: the original hero */
 .hero-main {
+    scroll-margin-top: var(--nav-h);
     display: flex;
     align-items: center;
     min-height: calc(100svh - var(--nav-h));
@@ -260,6 +477,14 @@ img {
         animation-timeline: view();
         animation-range: entry 10% entry 70%;
     }
+
+    .hero-logo,
+    .splash-side,
+    .scroll-hint {
+        animation: logo-exit linear both;
+        animation-timeline: --splash;
+        animation-range: exit 0% exit 40%;
+    }
 }
 
 @keyframes logo-exit {
@@ -273,6 +498,36 @@ img {
     from {
         opacity: 0;
         transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/*
+    The nav is outside .hero-splash, so the --splash timeline has to be
+    hoisted to a shared ancestor for the nav logo to see it.
+*/
+body {
+    timeline-scope: --splash;
+}
+
+@supports (animation-timeline: view()) {
+
+    .nav-logo {
+        animation: nav-logo-in linear both;
+        animation-timeline: --splash;
+
+        /* Starts fading in as the big logo is halfway through fading out */
+        animation-range: exit 20% exit 60%;
+    }
+}
+
+@keyframes nav-logo-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
     }
     to {
         opacity: 1;
@@ -380,6 +635,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .profile-back {
@@ -1035,6 +1291,26 @@ img {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .splash-stage {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 32px;
+    }
+
+    .splash-center { order: 1; }
+    .splash-left,
+    .splash-right {
+        justify-self: center;
+        align-items: center;
+    }
+
+    .splash-side {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 24px;
+    }
 }
 
 
@@ -1102,6 +1378,10 @@ img {
         align-items: flex-start;
         gap: 12px;
     }
+
+    .nav-logo {
+        display: none;
+    }
 }
 
 
@@ -1147,6 +1427,16 @@ img {
 
     .hero-logo,
     .hero-layout {
+        animation: none;
+    }
+
+    .nav-logo {
+        animation: none;
+        opacity: 1;
+    }
+
+    .splash-link,
+    .scroll-arrow {
         animation: none;
     }
 }

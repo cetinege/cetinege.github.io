@@ -21,6 +21,8 @@ const projects = {
         description: "An interactive visualisation of NHS hospital admissions data, built with React and D3.js.",
         tags: ["React", "D3.js", "JavaScript"],
 
+        // <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7462207449954144256" height="1593" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
         live: "#",      // TODO: replace with the deployed URL
         github: "#",    // TODO: replace with the repository URL
 
