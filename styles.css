@@ -919,6 +919,11 @@ body {
     border-color: var(--border-strong);
 }
 
+/* Clip the image to the banner so the hover zoom doesn't spill out */
+.project-visual {
+    overflow: hidden;
+}
+
 /*
     The banner is a link, so clicking it opens the same detail page as
     the "Case study" button underneath.
@@ -934,11 +939,22 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
-.project-visual span {
-    color: var(--fg-muted);
-    font-size: 12px;
-    letter-spacing: 0.15em;
+/* Fills the banner and crops to fit without stretching */
+.project-visual img {
+    position: absolute;
+    object-position: top;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.4s ease;
 }
+
+.project-card:hover .project-visual img {
+    transform: scale(1.04);
+}
+
+
 
 /*
     "Live" badge. To turn it off for a project, delete this element
