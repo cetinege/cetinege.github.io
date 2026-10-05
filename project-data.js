@@ -9,8 +9,26 @@
     To add a project: add an entry to the projects object below and
     link to it with its key. No new HTML file needed.
 
-    Every field is optional except title. Leave "live" out entirely for
-    projects that aren't deployed and the Live app button won't appear.
+    Every field is optional except title.
+
+    TEXT FIELDS (description, overview, role, technologies)
+        Use backticks ` ` to write over several lines. Formatting:
+          blank line       new paragraph
+          single new line  line break
+          - item           bullet list (every line in the block starts with "- ")
+          **bold**         bold
+          ==highlight==    highlighted words
+          [text](https://example.com)   link
+          Plain HTML (<mark>, <em>, <a>...) also works.
+
+    media: [ ... ]   Full-width items under the divider (images, YouTube, LinkedIn).
+    aside: [ ... ]   Optional right-hand column next to the text. If it is
+                     longer than the text it scrolls inside its own box.
+                     Leave it out and the column disappears.
+
+        { type: "image",    src: "images/x.jpg", alt: "...", caption: "optional" }
+        { type: "youtube",  id: "VIDEO_ID" }
+        { type: "linkedin", src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:...", height: 600 }
 */
 
 const projects = {
@@ -21,12 +39,32 @@ const projects = {
         description: "An interactive visualisation of NHS hospital admissions data, built with React and D3.js.",
         tags: ["React", "D3.js", "JavaScript"],
 
-        // <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7462207449954144256" height="1593" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+        overview: `
+NHS Hospital Admitted Patient Care Activity (HAPCA) data is an annual report in England that measures hospital care for patients who are formally admitted to a hospital for treatment.
 
-        overview: "NHS Hospital Admitted Patient Care Activity (HAPCA) data is an annual report in England that that measures hospital care for patients who are formally admitted to a hospital for treatment. The problem is that it is published as a wall of spreadsheets with formatting inconsistencies across the decades. This project turns it into something a non-specialist can explore, with eight visualisations and a chart recommendation system that suggests a suitable chart for the question being asked.",
+The problem is that it is published as a ==wall of spreadsheets== with formatting inconsistencies across the decades. This project turns it into something a non-specialist can explore, with **eight visualisations** and a chart recommendation system that suggests a suitable chart for the question being asked.
+`,
 
-        role: "I acted as the team lead/admin for a group of eight, coordinating the team, distributing tasks and leading meetings while also building the animated bubble chart and prototyping key design components in Figma before we committed to code.",
-        technologies: "React for the interface, D3.js for the visualisations, and Figma for prototyping."
+        role: `
+I acted as the team lead/admin for a group of eight, coordinating the team, distributing tasks and leading meetings while also building the animated bubble chart and prototyping key design components in Figma before we committed to code.
+`,
+
+        technologies: "React for the interface, D3.js for the visualisations, and Figma for prototyping.",
+
+        // Full-width items under the divider, e.g.:
+        // media: [
+        //     { type: "image", src: "images/hapca-1.jpg", alt: "Dashboard overview", caption: "The main dashboard" },
+        //     { type: "youtube", id: "VIDEO_ID" }
+        // ],
+
+        // Side column (scrolls if it is taller than the text)
+        aside: [
+            {
+                type: "linkedin",
+                src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7462207449954144256",
+                height: 1593
+            }
+        ]
     },
 
     "higher-or-lower": {
@@ -80,13 +118,19 @@ const projectKey = parameters.get("project");
 const project = projects[projectKey];
 
 
-/* Writes text into an element, if that element exists */
+/* Writes plain text into an element, if that element exists */
 function setText(elementId, text) {
     const element = document.getElementById(elementId);
 
     if (element) {
         element.textContent = text || "";
     }
+}
+
+
+/* Writes formatted text (see the formatting list at the top) */
+function setRichText(elementId, text) {
+    setRich(document.getElementById(elementId), text);
 }
 
 
@@ -136,16 +180,38 @@ function renderLinks(project) {
 }
 
 
+/* Full-width media under the divider, and the optional side column */
+function renderMediaSections(project) {
+    const media = document.getElementById("project-media");
+    const aside = document.getElementById("project-aside");
+    const columns = document.getElementById("case-study-columns");
+
+    if (media) {
+        media.hidden = !renderMedia(media, project.media);
+    }
+
+    const hasAside = renderMedia(document.getElementById("project-aside-inner"), project.aside);
+
+    if (aside) {
+        aside.hidden = !hasAside;
+    }
+
+    if (columns) {
+        columns.classList.toggle("has-aside", hasAside);
+    }
+}
+
+
 /* Shown when the URL asks for a project that isn't in the object above */
 function renderNotFound() {
     document.title = "Project not found | Ege Cetin";
 
     setText("breadcrumb-current", "Not found");
     setText("project-title", "Project not found");
-    setText("project-description", "That project doesn't exist yet. Head back to the projects list to see what's there.");
+    setRichText("project-description", "That project doesn't exist yet. Head back to the projects list to see what's there.");
 
     document.querySelector(".case-study").classList.add("case-study-missing");
-    document.querySelector(".case-study-content").hidden = true;
+    document.querySelector(".case-study-body").hidden = true;
 }
 
 
@@ -155,13 +221,15 @@ if (project) {
     setText("breadcrumb-current", project.title);
     setText("project-type", project.type);
     setText("project-title", project.title);
-    setText("project-description", project.description);
-    setText("project-overview", project.overview);
-    setText("project-role", project.role);
-    setText("project-technologies", project.technologies);
+
+    setRichText("project-description", project.description);
+    setRichText("project-overview", project.overview);
+    setRichText("project-role", project.role);
+    setRichText("project-technologies", project.technologies);
 
     renderTags(project.tags);
     renderLinks(project);
+    renderMediaSections(project);
 } else {
     renderNotFound();
 }
