@@ -17,7 +17,7 @@
 
 <link rel="prefetch" href="index.html" as="document">
 
-<link rel="icon" href="ec-logo.svg" type="image/x-icon">
+<link rel="icon" href="ec-logo.svg" type="image/svg+xml">
 
 <script>
     try {
@@ -26,11 +26,7 @@
         }
     } catch (e) {}
 </script>
-
-
 </head>
-
-
 
 <body>
 
@@ -129,33 +125,47 @@
 
                 <h1 id="project-title"></h1>
 
-                <p class="case-study-intro" id="project-description"></p>
+                <div class="case-study-intro rich" id="project-description"></div>
 
                 <div class="case-study-tags" id="project-tags"></div>
 
                 <div class="case-study-actions" id="project-links"></div>
 
-                <div class="case-study-content">
+                <!-- The divider is the border-top on this wrapper -->
+                <div class="case-study-body">
 
-                    <section>
-                        <h2>Overview</h2>
-                        <p id="project-overview"></p>
-                    </section>
+                    <!-- Full-width media: images, YouTube, LinkedIn. Hidden when empty -->
+                    <div class="case-study-media" id="project-media" hidden></div>
 
-                    <section>
-                        <h2>My role</h2>
-                        <p id="project-role"></p>
-                    </section>
+                    <div class="case-study-columns" id="case-study-columns">
 
-                    <section>
-                        <h2>Technologies</h2>
-                        <p id="project-technologies"></p>
-                    </section>
+                        <div class="case-study-text">
+                            <section>
+                                <h2>Overview</h2>
+                                <div class="rich" id="project-overview"></div>
+                            </section>
 
+                            <section>
+                                <h2>My role</h2>
+                                <div class="rich" id="project-role"></div>
+                            </section>
+
+                            <section>
+                                <h2>Technologies</h2>
+                                <div class="rich" id="project-technologies"></div>
+                            </section>
+                        </div>
+
+                        <!-- Optional side column. Hidden when a project has no "aside" items -->
+                        <aside class="case-study-aside" id="project-aside" hidden>
+                            <div class="case-study-aside-inner" id="project-aside-inner"></div>
+                        </aside>
+
+                    </div>
                 </div>
-            
+
                 <div class="back-nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-arrow lucide lucide-chevrons-left preview-icon"><path d="m11 17-5-5 5-5"/><path d="m18 17-5-5 5-5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="back-arrow lucide lucide-chevrons-left preview-icon" aria-hidden="true"><path d="m11 17-5-5 5-5"/><path d="m18 17-5-5 5-5"/></svg>
                     <a href="index.html#projects" class="back-link">Back to projects</a>
                 </div>
 
@@ -163,7 +173,9 @@
 
         </section>
 
-    <footer id="contact" class="site-footer bg-white">
+    </main>
+
+    <footer id="contact" class="site-footer footer-compact bg-white">
 
         <div class="wrap">
 
@@ -182,17 +194,11 @@
 
                 <div class="footer-actions">
 
-                    <a
-                        href="mailto:egecetin1511@gmail.com"
-                        class="btn btn-primary"
-                    >
+                    <a href="mailto:egecetin1511@gmail.com" class="btn btn-primary">
                         egecetin1511@gmail.com
                     </a>
 
-                    <a
-                        href="resume.html"
-                        class="btn btn-outline"
-                    >
+                    <a href="resume.html" class="btn btn-outline">
                         Resume
                     </a>
 
@@ -255,8 +261,7 @@
 
     </footer>
 
-    </main>
-
+    <script src="project-media-helper.js"></script>
     <script src="project-data.js"></script>
     <script src="theme.js"></script>
 </body>
