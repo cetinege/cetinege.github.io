@@ -1187,6 +1187,10 @@ body {
 }
 
 .linkedin-post {
+    display: flex;  
+    flex-direction: column;
+    gap: 32px;
+
     margin-top: 16px;
     padding: 16px;
     border: 1px solid var(--border);
@@ -1195,6 +1199,8 @@ body {
 
 /* LinkedIn's embed is a fixed-size iframe, so let it shrink on mobile */
 .linkedin-post iframe {
+    flex: none;
+    
     display: block;
     width: 100%;
     max-width: 550px;
