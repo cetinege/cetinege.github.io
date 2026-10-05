@@ -17,18 +17,16 @@ const projects = {
 
     "nhs-dataviz": {
         type: "UNIVERSITY PROJECT",
-        title: "NHS Health Data Visualisation",
+        title: "Visualisation of Health Data",
         description: "An interactive visualisation of NHS hospital admissions data, built with React and D3.js.",
         tags: ["React", "D3.js", "JavaScript"],
 
         // <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7462207449954144256" height="1593" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-        live: "#",      // TODO: replace with the deployed URL
-        github: "#",    // TODO: replace with the repository URL
+        overview: "NHS Hospital Admitted Patient Care Activity (HAPCA) data is an annual report in England that that measures hospital care for patients who are formally admitted to a hospital for treatment. The problem is that it is published as a wall of spreadsheets with formatting inconsistencies across the decades. This project turns it into something a non-specialist can explore, with eight visualisations and a chart recommendation system that suggests a suitable chart for the question being asked.",
 
-        overview: "NHS Hospital Admitted Patient Care Activity data covers more than 25 years of admissions, but it is published as a wall of spreadsheets. This project turns it into something a non-specialist can explore, with eight visualisations and a chart recommendation system that suggests a suitable chart for the question being asked.",
-        role: "I worked as team admin across a group of eight, running the board and keeping the scope realistic, while also building the animated bubble chart and prototyping key screens in Figma before we committed to code.",
-        technologies: "React for the interface, D3.js for the visualisations, and Figma for prototyping. The dataset was pre-aggregated before it reached the browser to keep the first render fast."
+        role: "I acted as the team lead/admin for a group of eight, coordinating the team, distributing tasks and leading meetings while also building the animated bubble chart and prototyping key design components in Figma before we committed to code.",
+        technologies: "React for the interface, D3.js for the visualisations, and Figma for prototyping."
     },
 
     "higher-or-lower": {
@@ -37,8 +35,8 @@ const projects = {
         description: "A React-based game where users compare NHS hospital admissions data through a higher-or-lower format.",
         tags: ["React", "Supabase", "JavaScript"],
 
-        live: "#",
-        github: "#",
+        live: "https://higherorlowerhapca.netlify.app",
+        github: "https://github.com/cetinege/hapca-higher-or-lower",
 
         overview: "At the public demo day, most visitors were never going to read a dashboard cold. This game gives them a reason to care about the numbers first: two conditions appear side by side and you guess which had more admissions, with the real figure revealed each round.",
         role: "A solo build alongside the main group project, from the idea through to the deployed version used on the day.",
@@ -51,8 +49,8 @@ const projects = {
         description: "A full-stack movie watchlist app with search, favouriting, custom lists and shareable public links.",
         tags: ["React", "Supabase", "JavaScript"],
 
-        live: "#",
-        github: "#",
+        live: "https://watching-you-watchlist.netlify.app",
+        github: "https://github.com/cetinege/watching-you",
 
         overview: "I wanted one place to keep what I meant to watch, and to be able to send a list to a friend without either of us installing anything. It is open source, documented, and deployed for real use among friends.",
         role: "Solo build and ongoing maintenance, including the contribution guidelines for other developers.",
