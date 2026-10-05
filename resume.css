@@ -1,0 +1,154 @@
+
+/* Sticks the footer to the bottom when the page content is short */
+.resume-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- NAV --- */
+
+/* No splash/animation, just show the logo*/
+.nav-logo {
+    opacity: 1;
+    animation: none;
+}
+
+/* --- HEADER --- */
+
+.resume-head {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 0 48px;
+    border-bottom: 1px solid var(--border);
+}
+
+.resume-head-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+.resume-title h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.resume-sub {
+    margin-top: 12px;
+    color: var(--accent-text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.resume-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.resume-actions .btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- PDF VIEWER --- */
+
+.resume-main {
+    flex: 1;
+    padding: 40px 0 72px;
+}
+
+.resume-viewer {
+    height: min(1180px, 140vh);
+    min-height: 640px;
+
+    /* The PDF page is white in both themes */
+    background: #fff;
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+}
+
+.resume-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* --- FALLBACKS --- */
+
+.resume-fallback {
+    padding: 44px 26px;
+    text-align: center;
+    background: var(--card-bg);
+    color: var(--fg);
+}
+
+.resume-fallback h2 {
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.resume-fallback p {
+    margin-bottom: 20px;
+    color: var(--fg-muted);
+    font-size: 14px;
+}
+
+.resume-fallback-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Only shown on phones */
+.resume-fallback-mobile {
+    display: none;
+}
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 760px) {
+
+    .resume-head {
+        padding: 40px 0 36px;
+    }
+
+    .resume-actions {
+        width: 100%;
+    }
+
+    .resume-actions .btn {
+        flex: 1;
+    }
+
+    /* Swap the inline PDF for the buttons */
+    .resume-viewer {
+        height: auto;
+        min-height: 0;
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .resume-frame {
+        display: none;
+    }
+
+    .resume-fallback-mobile {
+        display: block;
+        border: 1px solid var(--border);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .resume-main {
+        padding: 28px 0 56px;
+    }
+}
