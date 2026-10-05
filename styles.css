@@ -284,9 +284,11 @@ img {
 .nav-logo {
     position: absolute;
     inset: 0;
-    margin: auto;           /* centres without a transform */
+
+    /* centres without a transform */
+    margin: auto; 
     width: fit-content;
-    height: 40px;           /* use an even number */
+    height: 40px;
 
     display: flex;
     align-items: center;
@@ -1154,7 +1156,7 @@ body {
 /* --- FOOTER --- */
 
 .site-footer {
-    padding: 100px 0 36px;
+    padding: 60px 0 36px;
     border-top: 1px solid var(--border);
 }
 

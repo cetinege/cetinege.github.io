@@ -12,6 +12,11 @@
     padding-top: 60px;
 }
 
+/* --- NAV --- */
+.nav-logo {
+    opacity: 100;
+}
+
 /* --- BREADCRUMBS --- */
 
 .breadcrumbs {
