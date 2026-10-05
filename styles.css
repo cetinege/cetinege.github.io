@@ -54,6 +54,7 @@
     --card-bg-2: #17171d;
     --border: #29292f;
     --border-strong: #3a3a42;
+    --accent-text: #ff4054;
 }
 
 .bg-white {
@@ -64,6 +65,7 @@
     --card-bg-2: #ebebe6;
     --border: #dcdcd6;
     --border-strong: #bdbdb5;
+    --accent-text: #b01226;
 }
 
 .bg-black,
@@ -91,6 +93,7 @@
     --card-bg-2: #ebebe6;
     --border: #dcdcd6;
     --border-strong: #bdbdb5;
+    --accent-text: #b01226;
 }
 
 :root[data-theme="light"] .bg-black {
@@ -101,6 +104,7 @@
     --card-bg-2: #ebebe6;
     --border: #dcdcd6;
     --border-strong: #bdbdb5;
+    --accent-text: #b01226;
 }
 
 :root[data-theme="light"] .bg-white {
@@ -111,6 +115,7 @@
     --card-bg-2: #17171d;
     --border: #29292f;
     --border-strong: #3a3a42;
+    --accent-text: #ff4054;
 }
 
 /*
@@ -1037,6 +1042,13 @@ body {
     letter-spacing: 0.1em;
 }
 
+/* Update text to be more visible in light mode*/
+.project-type,
+.experience-role,
+.fact-label {
+    color: var(--accent-text);
+}
+
 .project-body h3 {
     font-size: 22px;
     line-height: 1.2;
@@ -1133,6 +1145,7 @@ body {
     margin-top: 6px;
     color: var(--accent);
     font-size: 13px;
+    font-weight: 600;
 }
 
 .experience-description {
