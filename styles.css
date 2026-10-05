@@ -22,6 +22,7 @@
 
     --max: 1180px;
     --nav-h: 57px;
+    
 }
 
 
@@ -429,10 +430,6 @@ img {
     background: var(--accent);
 }
 
-.splash-link:hover {
-    color: var(--accent);
-}
-
 /* Keep the gentle bob, but out of sync so they don't move as a block */
 .splash-link:nth-child(even) {
     animation-delay: -2.5s;
@@ -466,9 +463,7 @@ img {
     transition: color 0.2s ease;
 }
 
-.scroll-hint:hover {
-    color: var(--accent);
-}
+
 
 .scroll-arrow {
     font-size: 16px;
@@ -629,12 +624,13 @@ body {
 }
 
 .profile-card {
-    width: 300px;
+    width: min(300px, 100%);
     height: 380px;
 
     /* Gives the child a 3D space to rotate inside of */
     perspective: 1200px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .profile-card-inner {
@@ -647,15 +643,17 @@ body {
     transition: transform 0.6s ease;
 }
 
-/*
-    :focus-within also matches when the card itself is focused, so this
-    covers both mouse hover and keyboard tabbing (the card has
-    tabindex="0" in the HTML).
-*/
-.profile-card:hover .profile-card-inner,
-.profile-card:focus-within .profile-card-inner {
+.profile-card.is-flipped .profile-card-inner {
     transform: rotateY(180deg);
 }
+
+/* Hover-flip only on devices that really hover (mouse) */
+@media (hover: hover) {
+    .profile-card:hover .profile-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
 
 .profile-front,
 .profile-back {
@@ -720,6 +718,14 @@ body {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.08em;
+}
+
+.hint-tap { display: none; }
+
+/* Touch devices can't hover, so show the tap wording instead */
+@media (hover: none) {
+    .hint-hover { display: none; }
+    .hint-tap   { display: inline; }
 }
 
 .social-links {
@@ -1313,12 +1319,7 @@ body {
     }
 
     .hero-profile {
-        align-items: flex-start;
-    }
-
-    .profile-card {
-        width: 240px;
-        height: 300px;
+        align-items: center;
     }
 
     .section {
@@ -1359,27 +1360,58 @@ body {
     .splash-stage {
         grid-template-columns: 1fr;
         justify-items: center;
-        gap: 32px;
+        gap: 8px;
     }
 
-    .splash-center { order: 1; }
-    .splash-left,
-    .splash-right {
+    .splash-center {
+        order: 1;
+        margin-bottom: 32px;
+    }
+
+    .splash-left  { order: 2; }
+    .splash-right { order: 3; }
+
+    /* Each side is a row of two equal columns, so both rows line up vertically */
+    .splash-side {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        max-width: 320px;
+        gap: 0 16px;
         justify-self: center;
         align-items: center;
     }
 
-    .splash-side {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px 24px;
+    .splash-link {
+        justify-self: start;
     }
+
 }
 
 
 /* Phones */
+
+/* Hover doesn't stick after tapping on phone*/
+@media (hover: hover) {
+    .splash-link:hover,
+    .scroll-hint:hover {
+        color: var(--accent);
+    }
+}
+.splash-link,
+.scroll-hint {
+    -webkit-tap-highlight-color: transparent;
+}
+
 @media (max-width: 600px) {
+
+    .profile-back {
+        padding: 20px;
+    }
+
+    .profile-facts li {
+        padding: 10px 0;
+    }
 
     .breadcrumbs {
         margin-bottom: 32px;
@@ -1413,11 +1445,6 @@ body {
     .hero-actions {
         flex-direction: column;
         align-items: stretch;
-    }
-
-    .profile-card {
-        width: 200px;
-        height: 250px;
     }
 
     .section {
@@ -1478,7 +1505,7 @@ body {
         spinning in 3D.
     */
     .profile-card:hover .profile-card-inner,
-    .profile-card:focus-within .profile-card-inner {
+    .profile-card.is-flipped .profile-card-inner {
         transform: none;
     }
 
@@ -1489,7 +1516,7 @@ body {
     }
 
     .profile-card:hover .profile-back,
-    .profile-card:focus-within .profile-back {
+    .profile-card.is-flipped .profile-back {
         opacity: 1;
     }
 

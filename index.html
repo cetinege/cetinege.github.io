@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
+
 <!-- Prefetch other pages for faster navigation -->
 <link rel="prefetch" href="personal.html" as="document">
 <link rel="prefetch" href="resume.html" as="document">
@@ -181,7 +182,7 @@
                             tabindex="0" makes the card reachable by keyboard,
                             which is what lets the CSS :focus-within rule flip it.
                         -->
-                        <div class="profile-card" tabindex="0">
+                        <div class="profile-card" tabindex="0" role="button" aria-pressed="false" aria-label="Profile card, activate to flip">
                             <div class="profile-card-inner">
 
                                 <div class="profile-front">
@@ -212,7 +213,10 @@
                             </div>
                         </div>
 
-                        <p class="profile-hint">HOVER FOR THE DETAILS</p>
+                        <p class="profile-hint">
+                            <span class="hint-hover">HOVER FOR THE DETAILS</span>
+                            <span class="hint-tap">TAP TO FLIP</span>
+                        </p>
 
                         <div class="social-links">
 
@@ -696,5 +700,6 @@
     <script src="experience.js"></script>
     <script src="hero.js"></script>
     <script src="theme.js"></script>
+    <script src="card.js"></script>
 </body>
 </html>
