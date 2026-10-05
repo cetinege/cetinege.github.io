@@ -18,7 +18,19 @@
 <link rel="prefetch" href="index.html" as="document">
 
 <link rel="icon" href="ec-logo.svg" type="image/x-icon">
+
+<script>
+    try {
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.dataset.theme = 'light';
+        }
+    } catch (e) {}
+</script>
+
+
 </head>
+
+
 
 <body>
 
