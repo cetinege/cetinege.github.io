@@ -120,17 +120,34 @@
 
 /* --- FOOTER LINK --- */
 
-.back-link {
-    display: inline-block;
+.back-nav {
+    display: flex;
+    align-items: center;
+
+    /* Spacing between the arrow and text */
+    gap: 6px; 
     margin-top: 48px;
+}
+
+.back-arrow {
     color: var(--fg-muted);
-    font-size: 13px;
     transition: color 0.2s ease;
 }
 
+.back-link {
+    display: inline-block;
+    color: var(--fg-muted);
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+
+/* Make both the arrow and link change color together on hover */
+.back-nav:hover .back-arrow,
 .back-link:hover {
     color: var(--accent);
 }
+
+
 
 
 /* --- NOT FOUND --- */
