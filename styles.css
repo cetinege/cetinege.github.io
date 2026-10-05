@@ -326,6 +326,38 @@ img {
 :root[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
 :root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
+
+/* --- BREADCRUMBS --- */
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 48px;
+
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.breadcrumbs a {
+    color: var(--fg-muted);
+    transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+    color: var(--accent-text, var(--accent));
+}
+
+.breadcrumb-separator {
+    color: var(--border-strong);
+}
+
+.breadcrumb-current {
+    color: var(--fg);
+}
+
 /* --- HERO --- */
 
 
@@ -1334,6 +1366,10 @@ body {
 
 /* Phones */
 @media (max-width: 600px) {
+
+    .breadcrumbs {
+        margin-bottom: 32px;
+    }
 
     .wrap {
         padding-left: 16px;
