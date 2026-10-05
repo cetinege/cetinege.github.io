@@ -364,6 +364,7 @@ img {
 /* Screen 1: logo only, exactly one screen tall (minus the navbar) */
 .hero-splash {
     display: flex;
+    margin-top: -2%;
     align-items: center;
     justify-content: center;
     height: calc(100svh - var(--nav-h));
