@@ -311,11 +311,12 @@
                             <option value="all">All languages</option>
                             <option value="javascript">JavaScript</option>
                             <option value="react">React</option>
-                            <option value="d3">D3.js</option>
-                            <option value="supabase">Supabase</option>
+                            <!-- <option value="d3">D3.js</option> -->
+                            <!-- <option value="supabase">Supabase</option> -->
                             <option value="python">Python</option>
                         </select>
                     </div>
+
 
                     <div class="filter-panel-footer">
                         <button class="filter-reset" type="button">Reset filters</button>
@@ -357,6 +358,34 @@
                             <a href="detail.html?project=nhs-dataviz">Case study</a>
                         </div>
                     </div>
+                </article>
+
+                
+                <article class="project-card" data-type="tool personal" data-language="javascript node.js">
+
+                    <a class="project-visual" href="detail.html?project=diagram-editor">
+                        <img src="images/plantuml-drag-demo.gif" alt="GIF of the PlantUML Drag & Edit App" loading="lazy" width="1200" height="675">
+                    </a>
+
+                    <div class="project-body">
+                        <p class="project-type">TOOL</p>
+                        <h3>PlantUML Drag & Edit</h3>
+                        <p>
+                            A local web app for editing PlantUML class diagrams with draggable layout.
+                        </p>
+
+                        <div class="project-tags">
+                            <span>JavaScript</span>
+                            <span>Node.js</span>
+                            <span>PlantUML</span>
+                        </div>
+
+                        <div class="project-actions">
+                            <a href="detail.html?project=diagram-editor">Case study</a>
+                            <a href="https://github.com/cetinege/plantuml-drag-and-edit" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+
                 </article>
 
 
@@ -425,14 +454,14 @@
 
 
                 <!-- Not deployed, so this card has no .project-live badge and no "Live app" link -->
-                <article class="project-card" data-type="ai personal" data-language="python">
+                <article class="project-card" data-type="tool personal" data-language="python">
 
                     <a class="project-visual" href="detail.html?project=pain-detector">
                         <img src="images/pain-rec.png" alt="Screenshot of the Face Pain Detector App" loading="lazy" width="1200" height="675">
                     </a>
 
                     <div class="project-body">
-                        <p class="project-type">AI PROJECT</p>
+                        <p class="project-type">TOOL</p>
                         <h3>Facial Pain Detector</h3>
                         <p>
                             A machine learning project exploring facial expressions
@@ -443,15 +472,20 @@
                             <span>Python</span>
                             <span>MediaPipe</span>
                             <span>OpenCV</span>
+                            <span>Matplotlib</span>
+                            <span>NumPy</span>
                         </div>
 
                         <div class="project-actions">
                             <a href="detail.html?project=pain-detector">Case study</a>
-                            <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href="https://github.com/cetinege/face-the-pain" target="_blank" rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
 
                 </article>
+
+                
+
 
             </div>
 

@@ -96,17 +96,34 @@ I acted as the team lead/admin for a group of eight, coordinating the team, dist
     },
 
     "pain-detector": {
-        type: "AI PROJECT",
+        type: "TOOL",
         title: "Facial Pain Detector",
         description: "A machine learning project exploring facial expressions and their relationship to perceived pain.",
-        tags: ["Python", "MediaPipe", "OpenCV"],
+        tags: ["Python", "MediaPipe", "OpenCV", "Matplotlib", "NumPy"],
 
-        github: "#",
+        github: "https://github.com/cetinege/face-the-pain",
         // No "live" key, so no Live app button appears on this page
 
         overview: "The tool reads face landmarks and blendshape scores frame by frame from a webcam or video file, and combines the ones associated with pain expression into a single intensity score. It is an exploration rather than a clinical instrument, and has not been validated against any established pain scale.",
         role: "Solo build, including the calibration and smoothing work that made the output usable.",
         technologies: "Python with MediaPipe for landmark and blendshape detection, OpenCV for video input, and Matplotlib for the trajectory and intensity-over-time plots I used to tune the weights."
+    },
+
+    "diagram-editor": {
+        type: "TOOL",
+        title: "PlantUML Drag & Edit",
+        description: "A local web app for editing PlantUML class diagrams with draggable layout. Write PlantUML code, render it through a real PlantUML engine, then drag classes and packages around by hand.",
+        tags: ["JavaScript", "Node.js", "PlantUML"],
+
+        github: "https://github.com/cetinege/plantuml-drag-and-edit",
+        // No "live" key, so no Live app button appears on this page
+
+        overview: `I love using PlantUML to create my class diagrams. Not for fun, but for my university courseworks & projects. I'm not a psychopath. However, as good as PlantUML is, I still find myself spending a boatload of time trying to get the layout to look just perfect. Let me tell you, it's not a fun process. So I made this tool to be able to easily move around classes/packages and make everything look just how I want them to look.
+
+It doesn't replace PlantUML's rendering or syntax because that part works great already. It takes PlantUML's own SVG output and adds interactive dragging on top of it.
+        `,
+        role: `Solo build, including diagram parsing, SVG manipulation, and the drag-and-drop interface.`,
+        technologies: `JavaScript for the front end, Node.js for the back end, and PlantUML for rendering the diagrams. The app runs locally in a browser and communicates with a local PlantUML server to generate the SVGs.`
     }
 
 };
