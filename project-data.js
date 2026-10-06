@@ -124,8 +124,78 @@ It doesn't replace PlantUML's rendering or syntax because that part works great 
         `,
         role: `Solo build, including diagram parsing, SVG manipulation, and the drag-and-drop interface.`,
         technologies: `JavaScript for the front end, Node.js for the back end, and PlantUML for rendering the diagrams. The app runs locally in a browser and communicates with a local PlantUML server to generate the SVGs.`
-    }
+    },
 
+    "spotify-songadder": {
+        type: "TOOL",
+        title: "Spotify SongAdder",
+        description: "A web app that lets you add songs to a Spotify playlist by typing or pasting their names, without having to search for each one.",
+        tags: ["JavaScript", "Spotify API"],
+        github: "https://github.com/cetinege/song-adder",
+        overview: "Spotify's web interface makes it easy to add songs to a playlist one at a time, but if you have a list of songs you want to add, it can be tedious. This tool lets you paste or type a list of song names and adds them all to your chosen playlist in one go.",
+        role: "Solo build, including the front-end interface and integration with the Spotify API.",
+        technologies: "JavaScript for the front end, and the Spotify Web API for searching and adding tracks to playlists."
+    },
+
+    "photo-mosaic": {
+        type: "TOOL",
+        title: "Photo-Mosaic",
+        description: "A Python-based image processing tool that uses the Python Imaging Library (PIL/Pillow) to create a photomosaic based on a dictionary of source images.",
+        tags: ["Python", "PIL/Pillow", "Image Processing"],
+        github: "https://github.com/cetinege/photo-mosaic",
+        overview: "Creating a photomosaic from a collection of images can be a time-consuming process. This tool automates the creation of photomosaics using the Python Imaging Library (PIL/Pillow).",
+        role: "Solo build, including image processing logic and the user interface.",
+        technologies: "Python for the backend, PIL/Pillow for image manipulation, and a simple web interface for user interaction."
+    },
+
+    "desktop-pet": {
+        type: "TOOL",
+        title: "Desktop Pet",
+        description: "A Python-based desktop application that creates a small animated pet on the user's desktop.",
+        tags: ["Python"],
+        github: "https://github.com/cetinege/desktopet",
+        overview: "Creating a desktop pet can be a fun way to personalize your workspace. This tool allows you to create and customize a small animated pet that will follow your cursor around the screen.",
+        role: "Solo build, including the animation logic and the user interface.",
+        technologies: "Python for the backend, and a simple GUI framework for user interaction."
+    },
+
+    "volunteer-dispatch-sim": {
+        type: "TOOL | HACKATHON",
+        title: "Volunteer Dispatch Simulator",
+        description: "A web game that simulates the dispatch of volunteers to various locations based on their skills and availability.",
+        tags: ["TypeScript", "JavaScript"],
+        github: "https://github.com/cetinege/volunteer-dispatch-sim",
+        live: "https://govolunteer.netlify.app",
+        overview: `
+We're volunteer members (Exchange Managers) of AIESEC UK in various local committees and we wanted to develop a game where we can show off what kind of things someone from our line of work would do. AIESEC's goal is to send interested volunteers all over the world and create cross-cultural exchange experiences that develop leadership in young people.
+
+As Exchange Managers, our role involves matching volunteers to international opportunities, supporting them through the preparation process, handling documentation, communicating with partner countries, and solving unexpected challenges along the way. It’s fast-paced, people-focused, and requires balancing multiple cases at once.
+
+We realised that many people don’t fully understand what happens behind the scenes of an exchange. So we decided to turn our day-to-day responsibilities into a simulation game by allowing players to experience the pressure, decision-making, and strategy involved in managing volunteers.
+
+This project is not affiliated with or endorsed by AIESEC. It is independently created and inspired by our personal experiences as volunteers.
+        `,
+        role: "I led the development of the game, including the design of the simulation mechanics, the user interface, and the implementation of the game logic.",
+        technologies: "TypeScript for the game logic, JavaScript for the front-end interface, and a simple web framework for rendering the game in the browser.",
+    },
+
+    "review-my-review": {
+        type: "TOOL | PERSONAL",
+        title: "Review-My-Review",
+        description: "A sentiment analysis model that evaluates a block of text and classifies it as either positive or negative.",
+        tags: ["Python", "Machine Learning", "TensorFlow / Keras", "NumPy, Pandas, Matplotlib, Scikit-learn"],
+        github: "https://github.com/cetinege/review-my-review",
+        overview: `This project builds a deep learning model that classifies movie reviews as positive or negative using natural language processing and an LSTM neural network.
+        The IMDB dataset provides labeled reviews categorised as either positive or negative. These labels are converted into numerical form for model training:
+        Positive → 1
+        Negative → 0
+        The dataset is split into training and testing sets using an 80/20 ratio (which is generally accepted as a good split), with a fixed random seed (42) to ensure reproducibility.
+        The text is prepared using Keras’ Tokenizer, which takes the reviews (text) and converts them into sequences of integers (word indexes). This way each review becomes a list of numbers. Fantastic. The problem, however, is that different reviews have different lengths (some are short, some very long ((like my reviews))). Neural networks need fixed-length input so I chose the maximum length to be 200 (tokens). 
+        After training, the model is evaluated to measure its generalisation performance.
+        `,
+        role: "I designed and implemented the model architecture, performed data preprocessing, and conducted training and evaluation of the sentiment analysis model.",
+        technologies: "Python for data preprocessing and model implementation, TensorFlow/Keras for building and training the neural network, and various libraries such as NumPy, Pandas, Matplotlib, and Scikit-learn for data manipulation and visualization."
+    }
 };
 
 
