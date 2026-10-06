@@ -68,7 +68,7 @@ I acted as the team lead/admin for a group of eight, coordinating the team, dist
     },
 
     "higher-or-lower": {
-        type: "WEB GAME",
+        type: "UNIVERSTY PROJECT | WEB GAME",
         title: "HAPCA Higher or Lower",
         description: "A React-based game where users compare NHS hospital admissions data through a higher-or-lower format.",
         tags: ["React", "Supabase", "JavaScript"],
@@ -82,7 +82,7 @@ I acted as the team lead/admin for a group of eight, coordinating the team, dist
     },
 
     "watching-you": {
-        type: "PERSONAL PROJECT",
+        type: "TOOL",
         title: "Watching You",
         description: "A full-stack movie watchlist app with search, favouriting, custom lists and shareable public links.",
         tags: ["React", "Supabase", "JavaScript"],
@@ -96,7 +96,7 @@ I acted as the team lead/admin for a group of eight, coordinating the team, dist
     },
 
     "pain-detector": {
-        type: "TOOL",
+        type: "AI/ML PROJECT",
         title: "Facial Pain Detector",
         description: "A machine learning project exploring facial expressions and their relationship to perceived pain.",
         tags: ["Python", "MediaPipe", "OpenCV", "Matplotlib", "NumPy"],
@@ -160,7 +160,7 @@ It doesn't replace PlantUML's rendering or syntax because that part works great 
     },
 
     "volunteer-dispatch-sim": {
-        type: "TOOL | HACKATHON",
+        type: "HACKATHON",
         title: "Volunteer Dispatch Simulator",
         description: "A web game that simulates the dispatch of volunteers to various locations based on their skills and availability.",
         tags: ["TypeScript", "JavaScript"],
@@ -180,7 +180,7 @@ This project is not affiliated with or endorsed by AIESEC. It is independently c
     },
 
     "review-my-review": {
-        type: "TOOL | PERSONAL",
+        type: "TOOL | AI/ML PROJECT",
         title: "Review-My-Review",
         description: "A sentiment analysis model that evaluates a block of text and classifies it as either positive or negative.",
         tags: ["Python", "Machine Learning", "TensorFlow / Keras", "NumPy, Pandas, Matplotlib, Scikit-learn"],
