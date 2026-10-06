@@ -817,7 +817,7 @@ body {
 
 /* Sits on the right of the heading row (e.g. the project count) */
 .sect-meta {
-    color: var(--fg-muted);
+    color: var(--accent-text, var(--accent));
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.1em;
