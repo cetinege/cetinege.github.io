@@ -264,9 +264,6 @@
 /* --- BACK LINK --- */
 
 .back-nav {
-    display: flex;
-    align-items: center;
-
     /* Spacing between the arrow and text */
     gap: 6px;
     margin-top: 48px;
@@ -278,7 +275,9 @@
 }
 
 .back-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     color: var(--fg-muted);
     font-size: 15px;
     transition: color 0.2s ease;
