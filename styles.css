@@ -371,11 +371,13 @@ img {
 /* Screen 1: logo only, exactly one screen tall (minus the navbar) */
 .hero-splash {
     display: flex;
-    margin-top: -2%;
     align-items: center;
     justify-content: center;
-    height: calc(100svh - var(--nav-h));
-    position: relative; 
+
+    min-height: calc(100svh - var(--nav-h));
+    padding: 24px 0;
+    
+    
     /* Tracks how far this block has scrolled out of view */
     view-timeline-name: --splash;
     view-timeline-axis: block;
@@ -394,6 +396,7 @@ img {
     flex-direction: column;
     align-items: center;
     gap: 28px;
+    margin-bottom: 50px;
 }
 
 .splash-side {
@@ -477,8 +480,17 @@ img {
 }
 
 .hero-logo {
-    width: min(70vw, 560px);
+    width: min(70vw, 560px);    
     height: auto;
+
+    /*
+        Reserve room for "Scroll for more" hint (~60px), the gap above it, and padding.
+        The logo shrinks to fit, so the hint always has space below it.
+    */
+    max-height: calc(100svh - var(--nav-h) - 180px);
+
+    /* If the height cap kicks in, scale the artwork inside the box without stretching it */
+    object-fit: contain;
 }
 
 /* Screen 2: the original hero */
@@ -1313,6 +1325,25 @@ body {
 
 */
 
+/*
+    Short desktop windows (e.g. 1024x600) - scale the card with the screen height and make sure the icons fit on screen.
+*/
+@media (max-height: 760px) and (min-width: 861px) {
+
+    /* extra space below the icons */
+    .hero-main {
+        padding: 32px 0 40px;   
+    }
+
+    .hero-profile {
+        gap: 12px;
+    }
+
+    .profile-card {
+        height: clamp(340px, calc(100svh - var(--nav-h) - 210px), 380px);
+    }
+}
+
 @media (max-width: 860px) {
 
     .hero-main {
@@ -1408,6 +1439,16 @@ body {
 .splash-link,
 .scroll-hint {
     -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-height: 640px) {
+    .splash-center {
+        gap: 16px;
+    }
+
+    .hero-logo {
+        max-height: calc(100svh - var(--nav-h) - 150px);
+    }
 }
 
 @media (max-width: 600px) {
