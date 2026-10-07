@@ -1326,7 +1326,7 @@ body {
 */
 
 /*
-    Short desktop windows (e.g. 1024x600) - scale the card with the screen height and make sure the icons fit on screen.
+    Short desktop windows (like 1024x600) - scale the card with the screen height and make sure the icons fit on screen.
 */
 @media (max-height: 760px) and (min-width: 861px) {
 
