@@ -42,20 +42,26 @@ const projects = {
         overview: `
 NHS Hospital Admitted Patient Care Activity (HAPCA) data is an annual report in England that measures hospital care for patients who are formally admitted to a hospital for treatment.
 
-The problem is that it is published as a ==wall of spreadsheets== with formatting inconsistencies across the decades. This project turns it into something a non-specialist can explore, with **eight visualisations** and a chart recommendation system that suggests a suitable chart for the question being asked.
+The problem is that it is published as a **==wall of spreadsheets==** with formatting inconsistencies across the decades. This project takes that **25+ data spanning 200M+ records** and allows interactive exploration for specialists and non-specialists, with **eight charts** and a visualisation recommendation system that suggests a suitable chart for the question being asked.
 `,
 
         role: `
-I acted as the team lead/admin for a group of eight, coordinating the team, distributing tasks and leading meetings while also building the animated bubble chart and prototyping key design components in Figma before we committed to code.
+I acted as the team lead/admin for a group of eight, coordinating the team, distributing tasks and leading meetings while also building the animated **[bubble chart](https://www.youtube.com/watch?v=0n9N2xXK7NQ&t=186s)** and prototyping key design components in Figma before we committed to code.
+I also built **[Higher or Lower: NHS HAPCA Edition](https://cetinege.github.io/detail.html?project=higher-or-lower)**, an interactive guessing game, to give visitors an engaging introduction to the hospital admissions dataset at the project's public demo day.
 `,
 
-        technologies: "React for the interface, D3.js for the visualisations, and Figma for prototyping.",
+        technologies: "**React** for the interface, **D3.js** for the visualisations, and **Figma** for prototyping.",
 
         // Full-width items under the divider, e.g.:
         // media: [
         //     { type: "image", src: "images/hapca-1.jpg", alt: "Dashboard overview", caption: "The main dashboard" },
         //     { type: "youtube", id: "VIDEO_ID" }
         // ],
+
+
+        media: [
+            { type: "youtube", id: "-iPyuSVeKGY", start: 6 }
+        ],
 
         // Side column (scrolls if it is taller than the text)
         aside: [
