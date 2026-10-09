@@ -79,12 +79,17 @@ I also built **[Higher or Lower: NHS HAPCA Edition](https://cetinege.github.io/d
         description: "A React-based game where users compare NHS hospital admissions data through a higher-or-lower format.",
         tags: ["React", "Supabase", "JavaScript"],
 
+        media: [
+            { type: "image", src: "assets/images/hapca.png", alt: "Home page for the Higher or Lower game", caption: "Home page for the Higher or Lower game" }
+        ],
+
+
         live: "https://higherorlowerhapca.netlify.app",
         github: "https://github.com/cetinege/hapca-higher-or-lower",
 
-        overview: "At the public demo day, most visitors were never going to read a dashboard cold. This game gives them a reason to care about the numbers first: two conditions appear side by side and you guess which had more admissions, with the real figure revealed each round.",
-        role: "A solo build alongside the main group project, from the idea through to the deployed version used on the day.",
-        technologies: "React for the game loop and Supabase for storing scores. The scoring weights toward closer pairs, because early versions were too easy and people stopped after two guesses."
+        overview: "A web game built to visitors a fun and interactive way to explore NHS hospital admissions data. Two medical conditions appear side by side and you guess which had more people admitted (to the hospital), with the real figure revealed each round.",
+        role: "A solo build to support the group project(**[Visualisation of Health Data](https://cetinege.github.io/detail.html?project=nhs-dataviz)**) in the demo day.",
+        technologies: "**React** for the game loop and **Supabase** for storing scores and the leaderboard."
     },
 
     "watching-you": {
@@ -98,7 +103,7 @@ I also built **[Higher or Lower: NHS HAPCA Edition](https://cetinege.github.io/d
 
         overview: "I wanted one place to keep what I meant to watch, and to be able to send a list to a friend without either of us installing anything. It is open source, documented, and deployed for real use among friends.",
         role: "Solo build and ongoing maintenance, including the contribution guidelines for other developers.",
-        technologies: "React on the front end, Supabase for authentication and PostgreSQL storage, and the TMDB API for film metadata and artwork. Public lists are read-only views keyed by a share token."
+        technologies: "**React** on the front end, **Supabase** for authentication and **PostgreSQL** storage, and the **TMDB API** for film metadata and artwork. Public lists are read-only views keyed by a share token."
     },
 
     "pain-detector": {
@@ -112,7 +117,7 @@ I also built **[Higher or Lower: NHS HAPCA Edition](https://cetinege.github.io/d
 
         overview: "The tool reads face landmarks and blendshape scores frame by frame from a webcam or video file, and combines the ones associated with pain expression into a single intensity score. It is an exploration rather than a clinical instrument, and has not been validated against any established pain scale.",
         role: "Solo build, including the calibration and smoothing work that made the output usable.",
-        technologies: "Python with MediaPipe for landmark and blendshape detection, OpenCV for video input, and Matplotlib for the trajectory and intensity-over-time plots I used to tune the weights."
+        technologies: "**Python** with **MediaPipe** for landmark and blendshape detection, **OpenCV** for video input, and **Matplotlib** for the trajectory and intensity-over-time plots I used to tune the weights."
     },
 
     "diagram-editor": {
@@ -129,7 +134,7 @@ I also built **[Higher or Lower: NHS HAPCA Edition](https://cetinege.github.io/d
 It doesn't replace PlantUML's rendering or syntax because that part works great already. It takes PlantUML's own SVG output and adds interactive dragging on top of it.
         `,
         role: `Solo build, including diagram parsing, SVG manipulation, and the drag-and-drop interface.`,
-        technologies: `JavaScript for the front end, Node.js for the back end, and PlantUML for rendering the diagrams. The app runs locally in a browser and communicates with a local PlantUML server to generate the SVGs.`
+        technologies: `**JavaScript** for the front end, **Node.js** for the back end, and **PlantUML** for rendering the diagrams. The app runs locally in a browser and communicates with a local PlantUML server to generate the SVGs.`
     },
 
     "spotify-songadder": {
@@ -140,7 +145,7 @@ It doesn't replace PlantUML's rendering or syntax because that part works great 
         github: "https://github.com/cetinege/song-adder",
         overview: "Spotify's web interface makes it easy to add songs to a playlist one at a time, but if you have a list of songs you want to add, it can be tedious. This tool lets you paste or type a list of song names and adds them all to your chosen playlist in one go.",
         role: "Solo build, including the front-end interface and integration with the Spotify API.",
-        technologies: "JavaScript for the front end, and the Spotify Web API for searching and adding tracks to playlists."
+        technologies: "**JavaScript** for the front end, and the **Spotify Web API** for searching and adding tracks to playlists."
     },
 
     "photo-mosaic": {
@@ -151,7 +156,7 @@ It doesn't replace PlantUML's rendering or syntax because that part works great 
         github: "https://github.com/cetinege/photo-mosaic",
         overview: "Creating a photomosaic from a collection of images can be a time-consuming process. This tool automates the creation of photomosaics using the Python Imaging Library (PIL/Pillow).",
         role: "Solo build, including image processing logic and the user interface.",
-        technologies: "Python for the backend, PIL/Pillow for image manipulation, and a simple web interface for user interaction."
+        technologies: "**Python** for the backend, **PIL/Pillow** for image manipulation, and a simple web interface for user interaction."
     },
 
     "desktop-pet": {
@@ -162,7 +167,7 @@ It doesn't replace PlantUML's rendering or syntax because that part works great 
         github: "https://github.com/cetinege/desktopet",
         overview: "Creating a desktop pet can be a fun way to personalize your workspace. This tool allows you to create and customize a small animated pet that will follow your cursor around the screen.",
         role: "Solo build, including the animation logic and the user interface.",
-        technologies: "Python for the backend, and a simple GUI framework for user interaction."
+        technologies: "**Python** for the backend, and a simple GUI framework for user interaction."
     },
 
     "volunteer-dispatch-sim": {
@@ -182,14 +187,14 @@ We realised that many people don’t fully understand what happens behind the sc
 This project is not affiliated with or endorsed by AIESEC. It is independently created and inspired by our personal experiences as volunteers.
         `,
         role: "I led the development of the game, including the design of the simulation mechanics, the user interface, and the implementation of the game logic.",
-        technologies: "TypeScript for the game logic, JavaScript for the front-end interface, and a simple web framework for rendering the game in the browser.",
+        technologies: "**TypeScript** for the game logic, **JavaScript** for the front-end interface, and a simple web framework for rendering the game in the browser.",
     },
 
     "review-my-review": {
         type: "TOOL | AI/ML PROJECT",
         title: "Review-My-Review",
         description: "A sentiment analysis model that evaluates a block of text and classifies it as either positive or negative.",
-        tags: ["Python", "Machine Learning", "TensorFlow / Keras", "NumPy, Pandas, Matplotlib, Scikit-learn"],
+        tags: ["**Python**", "**Machine Learning**", "**TensorFlow / Keras**", "**NumPy**, **Pandas**, **Matplotlib**, **Scikit-learn**"],
         github: "https://github.com/cetinege/review-my-review",
         overview: `This project builds a deep learning model that classifies movie reviews as positive or negative using natural language processing and an LSTM neural network.
         The IMDB dataset provides labeled reviews categorised as either positive or negative. These labels are converted into numerical form for model training:
@@ -200,7 +205,7 @@ This project is not affiliated with or endorsed by AIESEC. It is independently c
         After training, the model is evaluated to measure its generalisation performance.
         `,
         role: "I designed and implemented the model architecture, performed data preprocessing, and conducted training and evaluation of the sentiment analysis model.",
-        technologies: "Python for data preprocessing and model implementation, TensorFlow/Keras for building and training the neural network, and various libraries such as NumPy, Pandas, Matplotlib, and Scikit-learn for data manipulation and visualization."
+        technologies: "**Python** for data preprocessing and model implementation, **TensorFlow/Keras** for building and training the neural network, and various libraries such as **NumPy**, **Pandas**, **Matplotlib**, and **Scikit-learn** for data manipulation and visualization."
     }
 };
 
