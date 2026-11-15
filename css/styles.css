@@ -1171,6 +1171,11 @@ body {
     flex-direction: column;
 }
 
+/* Second group in the experience section (Leadership & Volunteering) */
+.experience-list + .sect-title-row {
+    margin-top: 96px;
+}
+
 .experience-card {
     display: grid;
     grid-template-columns: 180px 1fr;
