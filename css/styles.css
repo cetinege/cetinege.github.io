@@ -1207,9 +1207,19 @@ body {
 
 .experience-description {
     max-width: 650px;
-    margin-top: 12px;
+    margin: 12px 0 0;
+    padding-left: 18px;
     color: var(--fg-muted);
     font-size: 14px;
+}
+
+.experience-description li + li {
+    margin-top: 6px;
+}
+
+/* Bullet points use the main text colour: white in dark mode, black in light mode */
+.experience-description li::marker {
+    color: var(--fg);
 }
 
 /*
