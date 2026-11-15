@@ -4,14 +4,19 @@
     Load after photo-data.js.
 */
 
-const PHOTO_DIR = 'assets/photos';
+const PHOTO_DIR = "assets/gallery-pictures";
 
+function photoSrc(photo) {
+    return `${PHOTO_DIR}/${photo.folder}/${photo.id}.jpg`;
+}
+
+// No separate thumbnails yet, so the grid and the lightbox use the same file
 function thumbSrc(photo) {
-    return `${PHOTO_DIR}/thumbs/${photo.id}.jpg`;
+    return photoSrc(photo);
 }
 
 function fullSrc(photo) {
-    return `${PHOTO_DIR}/full/${photo.id}.jpg`;
+    return photoSrc(photo);
 }
 
 function photoAlt(photo) {
