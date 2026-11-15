@@ -6,7 +6,7 @@
     <body data-view="canvas | grid">:
       - canvas: the page is exactly one screen tall and the canvas
         fills whatever is left under the nav and toolbar
-      - grid:   a normal scrolling page
+      - grid:   a normal scrolling page, at least one screen tall
 */
 
 
@@ -23,6 +23,17 @@
     display: flex;
     flex: 1;
     min-height: 0;      /* lets the canvas shrink instead of overflowing */
+}
+
+/* Grid view still scrolls, but never ends above the bottom of the screen */
+.gallery-page[data-view="grid"] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+}
+
+.gallery-page[data-view="grid"] .gallery-main {
+    flex: 1;
 }
 
 
@@ -125,6 +136,11 @@
     cursor: grabbing;
 }
 
+/* No photos match the filters: hide the dot grid */
+.canvas-view.is-empty {
+    background-image: none;
+}
+
 /* Every tile sits on this plane; panning only moves the plane */
 .canvas-plane {
     position: absolute;
@@ -175,32 +191,25 @@
 
 /* --- EMPTY STATE --- */
 
-/* In canvas view it floats in the middle of the empty canvas */
-.gallery-page[data-view="canvas"] .gallery-main {
+/* Sits in the middle of the space under the toolbar, in both views */
+.gallery-main {
     position: relative;
 }
 
-.gallery-page[data-view="canvas"] .gallery-empty {
+.gallery-empty {
     position: absolute;
     top: 50%;
     left: 50%;
     translate: -50% -50%;
     z-index: 2;
 
+    width: fit-content;
     max-width: calc(100% - 32px);
     padding: 16px 20px;
     border: 1px solid var(--border);
     background: var(--card-bg);
     color: var(--fg-muted);
     text-align: center;
-}
-
-/* In grid view it sits at the top of the page like on personal.html */
-.gallery-page[data-view="grid"] .gallery-empty {
-    width: 100%;
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 48px 24px 0;
 }
 
 
@@ -236,10 +245,6 @@
 
     .gallery-toolbar .filter-panel {
         grid-template-columns: 1fr;
-    }
-
-    .gallery-page[data-view="grid"] .gallery-empty {
-        padding: 32px 16px 0;
     }
 
     .gallery-tools {

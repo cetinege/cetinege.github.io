@@ -88,6 +88,9 @@ function createPagedGrid(container, { photos, onSelect, pageSize = 24 }) {
         pagedGrid.setPhotos(visiblePhotos);
 
         emptyMessage.hidden = visiblePhotos.length > 0;
+
+        // No dot grid behind the "nothing found" message
+        canvasView.classList.toggle('is-empty', visiblePhotos.length === 0);
         updateCount();
     }
 
