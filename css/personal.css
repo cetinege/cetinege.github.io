@@ -1,0 +1,318 @@
+/*
+    PERSONAL PAGE
+    Load after styles.css and photos.css. Only adds the rules that
+    personal.html needs on top of the shared ones.
+*/
+
+
+/* --- HERO --- */
+
+.personal-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: calc(100svh - var(--nav-h));
+    padding: 80px 0;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Soft red glow rising from the bottom edge */
+.personal-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -40% 0;
+    z-index: 0;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 100%, rgba(230, 39, 60, 0.13), transparent 70%);
+    pointer-events: none;
+}
+
+.hero-intro {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px;
+    text-align: center;
+}
+
+.hero-intro h1 {
+    font-size: clamp(48px, 9vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+}
+
+.hero-tagline {
+    max-width: 40ch;
+    margin: 20px 0 28px;
+
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+}
+
+/* styles.css positions .scroll-hint absolutely; centre it here */
+.personal-hero .scroll-hint {
+    left: 50%;
+    translate: -50% 0;
+    z-index: 2;
+}
+
+/*
+    Decorative photos, three either side of the name, mirrored.
+
+    Purely decorative: they ignore the mouse entirely (no clicks, hover,
+    dragging or right-click saving), and are hidden from screen readers
+    in the HTML.
+*/
+.hero-photos {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hero-photo {
+    position: absolute;
+    top: var(--top);
+    width: var(--width);
+    aspect-ratio: var(--ratio);
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    background: var(--card-bg-2);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+
+    /* Float: drift --float to one side and back. Left and right photos
+       move in opposite directions so the layout stays mirrored. */
+    --float: 14px;
+    animation: hero-photo-float var(--float-duration) ease-in-out infinite alternate;
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-user-drag: none;
+}
+
+/*
+    ROWS
+    Each row sets its size, position and timing once, and both sides use
+    it, which is what keeps the two columns symmetrical.
+
+        --top             distance from the top of the hero
+        --inset           distance from the left or right edge
+        --width           photo width (height follows from --ratio)
+        --ratio           photo shape
+        --float-duration  one sweep of the side-to-side float
+        --drift           how far it rises as the hero scrolls away (parallax)
+*/
+.hero-photo--top {
+    --top: 1%;
+    --inset: 4.5%;
+    --width: 18%;
+    --ratio: 3 / 2;
+    --float-duration: 9s;
+    --drift: 14vh;
+}
+
+.hero-photo--middle {
+    --top: 30%;
+    --inset: 2%;
+    --width: 13.5%;
+    --ratio: 4 / 5;
+    --float-duration: 11s;
+    --drift: 24vh;
+}
+
+.hero-photo--bottom {
+    --top: 70%;
+    --inset: 4.5%;
+    --width: 17.5%;
+    --ratio: 3 / 2;
+    --float-duration: 10s;
+    --drift: 10vh;
+}
+
+/* SIDES */
+.hero-photo--left  { left: var(--inset); }
+.hero-photo--right { right: var(--inset); --float: -14px; }
+
+/*
+    The float uses the `translate` property and the parallax uses
+    `transform`, so the two animations run together without fighting.
+*/
+@keyframes hero-photo-float {
+    from { translate: calc(var(--float) * -1) 0; }
+    to   { translate: var(--float) 0; }
+}
+
+/*
+    Parallax with a scroll-driven animation, the same technique as the
+    logo on index.html. No JavaScript, and browsers without support
+    simply keep the float on its own.
+*/
+@supports (animation-timeline: scroll()) {
+
+    .hero-photo {
+        animation:
+            hero-photo-float var(--float-duration) ease-in-out infinite alternate,
+            hero-photo-drift linear both;
+        animation-timeline: auto, scroll(root);
+        animation-range: normal, 0 100vh;
+    }
+}
+
+@keyframes hero-photo-drift {
+    to {
+        transform: translateY(calc(var(--drift) * -1));
+    }
+}
+
+
+/* --- PHOTOGRAPHY --- */
+
+.photo-filters {
+    margin-bottom: 32px;
+}
+
+.photo-grid-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+/* --- SPOTIFY & YOUTUBE --- */
+
+/* Text on one side, embed on the other */
+.media-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+/* Puts the text on the right instead */
+.media-split--reverse .media-text {
+    order: 2;
+}
+
+.media-text h2 {
+    font-size: clamp(28px, 3.6vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.media-text p {
+    max-width: 46ch;
+    margin: 14px 0 24px;
+    color: var(--fg-muted);
+    font-size: 15px;
+}
+
+.embed-frame {
+    padding: 10px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+}
+
+.embed-frame iframe {
+    display: block;
+    width: 100%;
+    border: none;
+}
+
+.embed-frame--spotify iframe {
+    height: 420px;
+    border-radius: 8px;
+}
+
+.embed-frame--video iframe {
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+
+/* --- FLIPBOOK --- */
+
+/* Placeholder until the real flipbook is dropped in */
+.flipbook-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 520px;
+    padding: 40px 24px;
+    border: 1px dashed var(--border-strong);
+    background: repeating-linear-gradient(45deg, var(--card-bg) 0 10px, transparent 10px 20px);
+    text-align: center;
+}
+
+.flipbook-label {
+    color: var(--accent-text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+}
+
+.flipbook-slot p {
+    max-width: 44ch;
+    color: var(--fg-muted);
+    font-size: 14px;
+}
+
+
+/* --- MEDIA QUERIES --- */
+
+@media (max-width: 860px) {
+
+    .media-split {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .media-split--reverse .media-text {
+        order: 0;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .personal-hero {
+        min-height: 74svh;
+    }
+
+    /* Quieter on phones, tucked partly off the edges so they don't crowd the name */
+    .hero-photo { opacity: 0.5; --float: 8px; }
+    .hero-photo--right { --float: -8px; }
+
+    .hero-photo--top    { --top: 6%;  --inset: -4%; --width: 30%; }
+    .hero-photo--middle { --top: 38%; --inset: -3%; --width: 22%; }
+    .hero-photo--bottom { --top: 72%; --inset: -4%; --width: 30%; }
+
+    .flipbook-slot {
+        min-height: 360px;
+    }
+}
+
+
+/* --- ACCESSIBILITY --- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-photo {
+        animation: none;
+    }
+}

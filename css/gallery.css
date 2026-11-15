@@ -1,0 +1,253 @@
+/*
+    GALLERY PAGE
+    Load after styles.css and photos.css.
+
+    The page has two views, switched by gallery.js through
+    <body data-view="canvas | grid">:
+      - canvas: the page is exactly one screen tall and the canvas
+        fills whatever is left under the nav and toolbar
+      - grid:   a normal scrolling page
+*/
+
+
+/* --- LAYOUT --- */
+
+.gallery-page[data-view="canvas"] {
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.gallery-page[data-view="canvas"] .gallery-main {
+    display: flex;
+    flex: 1;
+    min-height: 0;      /* lets the canvas shrink instead of overflowing */
+}
+
+
+/* --- TOOLBAR --- */
+
+.gallery-toolbar {
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 90;
+    border-bottom: 1px solid var(--border);
+}
+
+.gallery-toolbar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+
+    min-height: 56px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* styles.css gives breadcrumbs a big bottom margin for article pages */
+.gallery-toolbar .breadcrumbs {
+    margin-bottom: 0;
+}
+
+.gallery-tools {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Same height as the view toggle next to it */
+.gallery-tools .filter-toggle {
+    padding: 7px 14px;
+    font-size: 12px;
+}
+
+/*
+    The filter panel drops down as its own full-width row under the
+    breadcrumbs and tools. In canvas view this pushes the canvas down
+    rather than covering photos.
+*/
+.gallery-toolbar .filter-panel {
+    flex-basis: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 0;
+}
+
+.view-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+}
+
+.view-toggle button {
+    padding: 8px 14px;
+    border: none;
+    background: none;
+    color: var(--fg-muted);
+
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.view-toggle button:hover {
+    color: var(--fg);
+}
+
+.view-toggle button[aria-pressed="true"] {
+    background: var(--accent);
+    color: #fff;
+}
+
+
+/* --- CANVAS VIEW --- */
+
+.canvas-view {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+
+    cursor: grab;
+    user-select: none;
+    touch-action: none;             /* we handle panning ourselves */
+    overscroll-behavior: none;
+
+    /* Faint dot grid so empty space still reads as a surface */
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.canvas-view.is-dragging {
+    cursor: grabbing;
+}
+
+/* Every tile sits on this plane; panning only moves the plane */
+.canvas-plane {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+/* --tile-width is set by infinite-canvas.js so the CSS and JS sizes can't drift apart */
+.canvas-tile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--tile-width);
+    border: 1px solid var(--border);
+}
+
+.canvas-tile img {
+    -webkit-user-drag: none;
+}
+
+.canvas-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    translate: -50% 0;
+    z-index: 2;
+
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--fg-muted);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.canvas-hint.is-hidden {
+    opacity: 0;
+}
+
+
+/* --- EMPTY STATE --- */
+
+/* In canvas view it floats in the middle of the empty canvas */
+.gallery-page[data-view="canvas"] .gallery-main {
+    position: relative;
+}
+
+.gallery-page[data-view="canvas"] .gallery-empty {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: 2;
+
+    max-width: calc(100% - 32px);
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--fg-muted);
+    text-align: center;
+}
+
+/* In grid view it sits at the top of the page like on personal.html */
+.gallery-page[data-view="grid"] .gallery-empty {
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 48px 24px 0;
+}
+
+
+/* --- GRID VIEW --- */
+
+/* Shorter than a normal .section, since the toolbar already gives space at the top */
+.grid-view.section {
+    padding: 48px 0 96px;
+}
+
+.load-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+/* --- MEDIA QUERIES --- */
+
+@media (max-width: 860px) {
+
+    /* The nav can grow taller than --nav-h here, so stop the toolbar sticking under it */
+    .gallery-toolbar {
+        position: static;
+    }
+
+    .gallery-toolbar .filter-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+
+    .gallery-toolbar .filter-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-page[data-view="grid"] .gallery-empty {
+        padding: 32px 16px 0;
+    }
+
+    .gallery-tools {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .canvas-hint {
+        font-size: 10px;
+    }
+}
