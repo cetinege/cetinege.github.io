@@ -58,6 +58,11 @@
     letter-spacing: 0.06em;
 }
 
+/* "Back to portfolio" button under the social links */
+.hero-back {
+    margin-top: 20px;
+}
+
 /* styles.css positions .scroll-hint absolutely; centre it here */
 .personal-hero .scroll-hint {
     left: 50%;
