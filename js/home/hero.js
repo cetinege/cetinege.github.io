@@ -3,7 +3,8 @@
 // The profile card scrolls in as the user scrolls down the page
 function initHeroScroll() {
 
-    const main = document.querySelector('.hero-main');
+    // Each page marks the section to snap to with data-snap-target
+    const main = document.querySelector('[data-snap-target]');
     if (!main) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
